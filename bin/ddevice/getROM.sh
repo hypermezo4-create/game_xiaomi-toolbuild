@@ -26,59 +26,72 @@ fi
 
 
 # Get ROM Info
-if [ "$(echo $baserom |grep miui_)" != "" ]; then
-    device_code=$(basename $baserom |cut -d '_' -f 2)
-    base_rom_code=$(echo "$baserom" | awk -F'_' '{print $3}')
-elif [ "$(echo $baserom |grep xiaomi.eu_)" != "" ]; then
-    device_code=$(basename $baserom |cut -d '_' -f 3)
-    base_rom_code=$(echo "$baserom" | awk -F'_' '{print $3}')
-elif [ "$(echo $baserom | grep -E '.*-ota_full-.*')" != "" ]; then
-    device_code=$(basename $baserom | cut -d '-' -f 1)
-    base_rom_code=$(basename $baserom | cut -d '-' -f 3)
+raw_device_code=""
 
-    # Transform device_code
-    device_code=$(echo $device_code | awk -F '_' '{
-        if (NF == 1) {
-            # If one part, e.g., shennong
-            print toupper($1)
-        } else if (NF == 2) {
-            # If two parts, e.g., tapas_global
-            print toupper($1) toupper(substr($2, 1, 1)) substr($2, 2)
-        } else if (NF == 3) {
-            # If three parts, e.g., houji_tw_global
-            printf toupper($1) toupper($2) toupper(substr($3, 1, 1)) substr($3, 2)
-        }
-    }')
+if [ "$(echo "$baserom" | grep miui_)" != "" ]; then
+    raw_device_code=$(basename "$baserom" | cut -d '_' -f 2)
+    base_rom_code=$(basename "$baserom" | awk -F'_' '{print $3}')
+elif [ "$(echo "$baserom" | grep xiaomi.eu_)" != "" ]; then
+    raw_device_code=$(basename "$baserom" | cut -d '_' -f 3)
+    base_rom_code=$(basename "$baserom" | awk -F'_' '{print $3}')
+elif [ "$(echo "$baserom" | grep -E '.*-ota_full-.*')" != "" ]; then
+    raw_device_code=$(basename "$baserom" | cut -d '-' -f 1)
+    base_rom_code=$(basename "$baserom" | cut -d '-' -f 3)
 else
-    device_code="YourDevice"
+    raw_device_code="YourDevice"
     base_rom_code="Unknown"
 fi
 
-device_f=$(echo $device_code | sed 's/\(Global\|EEAGlobal\|INGlobal\|IDGlobal\|RUGlobal\|TWGlobal\|TRGlobal\|JPGlobal\)$//' | tr '[:upper:]' '[:lower:]')
+raw_device_code=$(printf '%s' "$raw_device_code" | tr '[:upper:]' '[:lower:]')
 
-# Determine Device Type
-info "Get Device Type"
-if echo "$device_code" | grep -q 'EEAGlobal'; then
-    DEVICE_TYPE="EEAGlobal"
-elif echo "$device_code" | grep -q 'INGlobal'; then
-    DEVICE_TYPE="INGlobal"
-elif echo "$device_code" | grep -q 'IDGlobal'; then
-    DEVICE_TYPE="IDGlobal"
-elif echo "$device_code" | grep -q 'RUGlobal'; then
-    DEVICE_TYPE="RUGlobal"
-elif echo "$device_code" | grep -q 'JPGlobal'; then
-    DEVICE_TYPE="JPGlobal"
-elif echo "$device_code" | grep -q 'Global'; then
-    DEVICE_TYPE="Global"
-elif echo "$device_code" | grep -q 'TWGlobal'; then
-    DEVICE_TYPE="TWGlobal"
-elif echo "$device_code" | grep -q 'TRGlobal'; then
-    DEVICE_TYPE="TRGlobal"
-else
-    DEVICE_TYPE="China"
-fi
+# Split codename and region safely.
+# Examples:
+# moon_global       -> device_f=moon,   DEVICE_TYPE=Global
+# tapas_eea_global  -> device_f=tapas,  DEVICE_TYPE=EEAGlobal
+# houji_tw_global   -> device_f=houji,  DEVICE_TYPE=TWGlobal
+# zircon            -> device_f=zircon, DEVICE_TYPE=China
+case "$raw_device_code" in
+    *_eea_global)
+        device_f="${raw_device_code%_eea_global}"
+        DEVICE_TYPE="EEAGlobal"
+        ;;
+    *_in_global)
+        device_f="${raw_device_code%_in_global}"
+        DEVICE_TYPE="INGlobal"
+        ;;
+    *_id_global)
+        device_f="${raw_device_code%_id_global}"
+        DEVICE_TYPE="IDGlobal"
+        ;;
+    *_ru_global)
+        device_f="${raw_device_code%_ru_global}"
+        DEVICE_TYPE="RUGlobal"
+        ;;
+    *_tw_global)
+        device_f="${raw_device_code%_tw_global}"
+        DEVICE_TYPE="TWGlobal"
+        ;;
+    *_tr_global)
+        device_f="${raw_device_code%_tr_global}"
+        DEVICE_TYPE="TRGlobal"
+        ;;
+    *_jp_global)
+        device_f="${raw_device_code%_jp_global}"
+        DEVICE_TYPE="JPGlobal"
+        ;;
+    *_global)
+        device_f="${raw_device_code%_global}"
+        DEVICE_TYPE="Global"
+        ;;
+    *)
+        device_f="$raw_device_code"
+        DEVICE_TYPE="China"
+        ;;
+esac
 
-#Check MIUI or Hyper
+device_code=$(printf '%s' "$device_f" | tr '[:lower:]' '[:upper:]')
+
+info "Get Device Type"#Check MIUI or Hyper
 if echo "$base_rom_code" | grep -q "OS1"; then
     ROM_OS="OS1"
 elif echo "$base_rom_code" | grep -q "OS2"; then
