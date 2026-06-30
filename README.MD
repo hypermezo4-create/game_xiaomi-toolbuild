@@ -1,227 +1,375 @@
-<div align="center">
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:020617,35:111827,70:7F1D1D,100:DC2626&height=260&section=header&text=DeadZone%20GamingPlus&fontSize=52&fontColor=ffffff&animation=fadeIn&fontAlignY=34&desc=Premium%20Xiaomi%20HyperOS%20%2F%20MIUI%20ROM%20Automation%20%E2%80%A2%20By%20MEZO&descSize=16&descAlignY=57" />
+</p>
 
-# DeadZone GamingPlus
+<h1 align="center">🔥 DeadZone GamingPlus 🔥</h1>
 
-### Xiaomi HyperOS / MIUI ROM Build System  
-#### By MEZO
+<h3 align="center">
+  Xiaomi HyperOS / MIUI ROM Build System • Automated ROM Factory • By MEZO
+</h3>
 
-![DeadZone](https://img.shields.io/badge/DeadZone-GamingPlus-red?style=for-the-badge)
-![Platform](https://img.shields.io/badge/Platform-Xiaomi-blue?style=for-the-badge)
-![Android](https://img.shields.io/badge/Android-13%20%7C%2014%20%7C%2015%20%7C%2016-green?style=for-the-badge)
-![Build](https://img.shields.io/badge/Build-GitHub%20Actions-black?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
+<p align="center">
+  <a href="https://t.me/xDeadZoneh">
+    <img src="https://img.shields.io/badge/DeadZone-Updates-DC2626?style=for-the-badge&logo=telegram&logoColor=white" />
+  </a>
+  <a href="https://github.com/hypermezo4-create/game_xiaomi-toolbuild">
+    <img src="https://img.shields.io/badge/GitHub-Repository-111827?style=for-the-badge&logo=github&logoColor=white" />
+  </a>
+  <img src="https://img.shields.io/badge/Edition-GamingPlus-F43F5E?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Creator-MEZO-2563EB?style=for-the-badge" />
+</p>
 
-</div>
+<p align="center">
+  <img src="https://img.shields.io/badge/HyperOS-Supported-38BDF8?style=flat-square" />
+  <img src="https://img.shields.io/badge/MIUI-Supported-F97316?style=flat-square" />
+  <img src="https://img.shields.io/badge/Android-13%20%7C%2014%20%7C%2015%20%7C%2016-22C55E?style=flat-square" />
+  <img src="https://img.shields.io/badge/Build-GitHub%20Actions-111827?style=flat-square" />
+  <img src="https://img.shields.io/badge/Upload-Google%20Drive-4285F4?style=flat-square" />
+</p>
 
----
-
-## Overview
-
-**DeadZone GamingPlus** is a Xiaomi ROM build system created by **MEZO** for building customized HyperOS and MIUI ROM packages.
-
-The project automates the full ROM workflow: downloading the base ROM, extracting partitions, applying modifications, repacking images, generating a flashable ZIP package, uploading the final build, and publishing build information through Telegram workflows.
-
----
-
-## Project Identity
-
-- **Project Name:** DeadZone GamingPlus
-- **Creator:** MEZO
-- **Brand:** DeadZone
-- **Default Style:** GamingPlus
-- **Target Devices:** Xiaomi / Redmi / POCO
-- **Target Systems:** HyperOS and MIUI
-- **Build Type:** Automated custom ROM build system
-- **Language:** English only
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=800&size=22&duration=2600&pause=800&color=F43F5E&center=true&vCenter=true&width=980&lines=DeadZone+GamingPlus+ROM+Automation;Xiaomi+%7C+HyperOS+%7C+MIUI+Build+System;Payload+Extraction+%7C+Super+Repack+%7C+Cloud+Upload;Fast.+Clean.+Organized.+By+MEZO" />
+</p>
 
 ---
 
-## Main Features
+## 🧬 Project DNA
 
-- Automated ROM download from direct OTA links
-- Payload-based ROM extraction
-- Support for `payload.bin`
-- Support for dynamic partitions and `super.img`
-- Xiaomi device codename detection
-- HyperOS / MIUI metadata detection
+<table>
+<tr>
+<td width="50%">
+
+### 🔥 Brand
+
+```txt
+DeadZone By MEZO
+```
+
+A clean and powerful ROM automation identity focused on speed, structure, and reliable release delivery.
+
+</td>
+<td width="50%">
+
+### 🎮 Default Edition
+
+```txt
+GamingPlus
+```
+
+A performance-focused build style designed for users who want a clean, enhanced Xiaomi ROM experience.
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 📱 Target Devices
+
+```txt
+Xiaomi / Redmi / POCO
+```
+
+Built for Xiaomi ecosystem devices using HyperOS or MIUI base packages.
+
+</td>
+<td width="50%">
+
+### ⚙️ Build System
+
+```txt
+GitHub Actions + Linux Toolchain
+```
+
+Automated extraction, patching, repacking, upload, and notification workflow.
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🧠 Overview
+
+**DeadZone GamingPlus** is a Xiaomi ROM build and automation system created by **MEZO**.
+
+It is designed to process Xiaomi HyperOS / MIUI base ROM packages, extract system partitions, apply DeadZone GamingPlus modifications, repack the ROM, generate a flashable ZIP, upload the final build to Google Drive, and send build status through Telegram workflows.
+
+> **Build clean. Patch smart. Release with confidence.**
+
+---
+
+## 🚀 Build Pipeline
+
+```mermaid
+flowchart LR
+    A[ROM Link] --> B[Download Base ROM]
+    B --> C[Detect ROM Type]
+    C --> D[Extract Payload / Super]
+    D --> E[Extract Dynamic Partitions]
+    E --> F[Apply GamingPlus Mods]
+    F --> G[Patch Framework / SystemUI]
+    G --> H[Repack Images]
+    H --> I[Generate Flashable ZIP]
+    I --> J[Upload to Google Drive]
+    J --> K[Telegram Notification]
+```
+
+---
+
+## ✨ Feature Matrix
+
+<table>
+<tr>
+<td width="33%">
+
+### 📦 ROM Input
+
+- Direct OTA ROM links
+- Payload-based ROM packages
+- `payload.bin` support
+- `super.img` support
+- HyperOS / MIUI packages
+
+</td>
+<td width="33%">
+
+### 🛠️ Processing
+
+- Device codename detection
 - Android version detection
-- EROFS and EXT image handling
-- DeadZone GamingPlus patch workflow
-- Final flashable ZIP generation
-- Google Drive upload support
-- Per-device upload folders
-- Telegram private build notifications
-- Telegram release workflow support
-- GamingPlus branding by default
+- ROM region parsing
+- EROFS / EXT support
+- Dynamic partition extraction
+
+</td>
+<td width="33%">
+
+### ☁️ Release
+
+- Final ZIP generation
+- SHA256 output
+- Google Drive upload
+- Per-device folders
+- Telegram build status
+
+</td>
+</tr>
+</table>
 
 ---
 
-## Supported ROM Types
+## 🎮 GamingPlus Direction
 
-DeadZone GamingPlus is designed to work with Xiaomi ROM packages such as:
-
-- Recovery OTA ROMs
-- Payload-based ROMs
-- HyperOS ROM packages
-- MIUI ROM packages
-- Dynamic partition ROMs
-- ROMs containing `super.img`
-
----
-
-## Build Flow
-
-~~~text
-ROM Link
-  ↓
-Download Base ROM
-  ↓
-Detect ROM Type
-  ↓
-Extract payload.bin / super.img
-  ↓
-Extract Dynamic Partitions
-  ↓
-Apply DeadZone GamingPlus Mods
-  ↓
-Repack Partitions
-  ↓
-Generate super.img
-  ↓
-Create Flashable ZIP
-  ↓
-Upload to Google Drive
-  ↓
-Send Telegram Build Status
-~~~
+```txt
+ROM Automation            ████████████████████
+Gaming Experience         ███████████████████░
+Performance Tweaks        ███████████████████░
+HyperOS Customization     ███████████████████░
+Cloud Release Pipeline    ███████████████████░
+Telegram Workflow         ██████████████████░░
+```
 
 ---
 
-## Output Naming
+## 🧩 Supported ROM Layouts
 
-Final builds are generated using the DeadZone GamingPlus naming style:
+| ROM Layout | Status | Notes |
+|---|---:|---|
+| Recovery OTA ZIP | ✅ | Standard Xiaomi OTA package |
+| Payload ROM | ✅ | Extracts `payload.bin` |
+| Dynamic Partitions | ✅ | Handles dynamic partition images |
+| `super.img` ROM | ✅ | Supports super-based packages |
+| HyperOS | ✅ | HyperOS ROM workflow |
+| MIUI | ✅ | MIUI ROM workflow |
 
-~~~text
+---
+
+## 📁 Output Naming
+
+Final builds follow the DeadZone GamingPlus naming format:
+
+```txt
 DeadZone_GamingPlus_<VERSION>_<CODENAME>_<ROM_VERSION>_<REGION>-A<ANDROID>.zip
-~~~
+```
 
 Example:
 
-~~~text
+```txt
 DeadZone_GamingPlus_V1.06_ZIRCON_OS3.0.303.0.WNOCNXM_ChinaStable-A16.zip
-~~~
+```
 
 ---
 
-## Upload Structure
+## ☁️ Upload Structure
 
-Final ROM files are uploaded using a per-device folder structure:
+Final ROMs are organized by device codename:
 
-~~~text
-DeadZoneBuilds/GamingPlus/<DEVICE_CODENAME>/
-~~~
-
-Example:
-
-~~~text
-DeadZoneBuilds/GamingPlus/ZIRCON/
-DeadZoneBuilds/GamingPlus/PRAGUE/
-DeadZoneBuilds/GamingPlus/FUXI/
-~~~
+```txt
+DeadZoneBuilds/
+└── GamingPlus/
+    ├── ZIRCON/
+    ├── PRAGUE/
+    └── FUXI/
+```
 
 ---
 
-## Requirements
+## 🛠️ Toolchain
 
-This project is intended to run inside a Linux-based build environment such as GitHub Actions.
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=androidstudio,java,python,bash,linux,git,github,githubactions,docker,vscode" />
+</p>
 
-Required tools include:
+<table>
+<tr>
+<td width="50%">
+
+### Core Tools
 
 - Bash
 - Python 3
 - Java
-- 7z
+- Git
+- GitHub Actions
 - zip / unzip
-- aria2c
+- 7z
 - curl
+- aria2c
 - zstd
+
+</td>
+<td width="50%">
+
+### Android Image Tools
+
+- payload extractor
 - lpmake
 - lpunpack
 - mkfs.erofs
-- Android image tools
-- rclone
+- fs_config handling
+- file_contexts handling
+- dynamic partition tools
+- image patch utilities
+
+</td>
+</tr>
+</table>
 
 ---
 
-## GitHub Actions Usage
+## 📡 Telegram Workflow
 
-The project can be triggered through GitHub Actions by providing a Xiaomi ROM link as input.
+<table>
+<tr>
+<td align="center" width="25%">
 
-Typical workflow input:
+### 📥 Request
 
-~~~text
-ROM_URL=<direct Xiaomi ROM link>
-~~~
+ROM link received from supported workflow input.
 
-The build system will automatically process the ROM and generate a DeadZone GamingPlus flashable package.
+</td>
+<td align="center" width="25%">
+
+### ⚙️ Build
+
+GitHub Actions starts the automated build process.
+
+</td>
+<td align="center" width="25%">
+
+### ☁️ Upload
+
+Final ZIP is uploaded to Google Drive.
+
+</td>
+<td align="center" width="25%">
+
+### ✅ Release
+
+Build metadata and link are sent through Telegram.
+
+</td>
+</tr>
+</table>
 
 ---
 
-## Telegram Workflow
+## 🧾 Build Metadata
 
-DeadZone GamingPlus supports Telegram-based workflow integration for:
-
-- Public ROM build requests
-- Private build status notifications
-- Final success or failure messages
-- Release channel publishing
-- Build metadata delivery
+| Metadata | Purpose |
+|---|---|
+| Device codename | Verifies the correct target device |
+| ROM version | Identifies the base package |
+| Android version | Shows Android base |
+| Region | Shows ROM release region |
+| SHA256 | Verifies final ZIP integrity |
+| File size | Helps users confirm the download |
+| Drive link | Provides final build access |
 
 ---
 
-## Important Notes
+## 🧪 Safety Notes
 
-- Use only trusted ROM sources.
-- Use direct downloadable ROM links whenever possible.
+> Custom ROM building and flashing can be risky. Always verify the target device and base ROM before flashing.
+
+- Use trusted ROM sources only.
+- Prefer direct Xiaomi ROM links whenever possible.
+- Always verify the device codename.
+- Bootloader must be unlocked.
+- Back up your data before flashing.
 - Do not flash builds on unsupported devices.
-- Always verify the device codename before flashing.
-- The bootloader must be unlocked before flashing custom ROM builds.
-- Flashing custom ROMs is done at your own risk.
+- Flashing is always at your own risk.
 
 ---
 
-## Disclaimer
+## ⚠️ Disclaimer
 
-This project is provided for educational and development purposes only.
+This project is provided for educational, development, and ROM automation purposes only.
 
-The developer is not responsible for:
-
-- Bricked devices
-- Data loss
-- Bootloops
-- Failed flashes
-- Incorrect ROM usage
-- Unsupported device flashing
-
-Always back up your data before flashing any custom ROM.
+The developer is not responsible for bricked devices, bootloops, data loss, incorrect flashing, unsupported device usage, failed modifications, or damaged partitions.
 
 ---
 
-## Credits
+## 👑 Credits
 
-Created and maintained by **MEZO**.
+<table>
+<tr>
+<td align="center" width="50%">
 
-Project branding:
+### 🔥 Project
 
-~~~text
-DeadZone By MEZO
-~~~
+**DeadZone GamingPlus**
+
+Premium Xiaomi HyperOS / MIUI ROM automation.
+
+</td>
+<td align="center" width="50%">
+
+### 👑 Creator
+
+**MEZO**
+
+DeadZone ROM ecosystem builder and maintainer.
+
+</td>
+</tr>
+</table>
 
 ---
 
-<div align="center">
+<p align="center">
+  <a href="https://t.me/xDeadZoneh">
+    <img src="https://img.shields.io/badge/Telegram-DeadZone%20Updates-229ED9?style=for-the-badge&logo=telegram&logoColor=white" />
+  </a>
+  <a href="https://github.com/hypermezo4-create">
+    <img src="https://img.shields.io/badge/GitHub-hypermezo4--create-111827?style=for-the-badge&logo=github&logoColor=white" />
+  </a>
+</p>
 
-### DeadZone GamingPlus  
-#### Built for Xiaomi HyperOS / MIUI ROM customization
+<p align="center">
+  <b>DeadZone By MEZO</b>
+</p>
 
-</div>
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:DC2626,50:111827,100:020617&height=140&section=footer" />
+</p>
