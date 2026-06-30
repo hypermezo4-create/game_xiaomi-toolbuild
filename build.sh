@@ -126,7 +126,7 @@ mods "Gathering Devices Infomations"
 bash $work_dir/bin/ddevice/getname.sh $getvar
 bash $work_dir/bin/ddevice/fetchINFO.sh
 
-# Gửi thông báo đang Build với đầy đủ Codename và Version
+# Send a build notification with the full codename and version.
 python3 $work_dir/notify.py build "$repo_name" "$baserom" "$prefix_id" "$builder_name" "$builder_id"
 
 bash $work_dir/bin/ddevice/DEBLOAT/debloat.sh

@@ -1,4 +1,4 @@
-name: NothingsVN Xiaomi ROM Build
+name: DeadZone GamingPlus Xiaomi ROM Build
 
 on:
   workflow_dispatch:
@@ -7,10 +7,10 @@ on:
         description: 'URL of the ROM to build'
         required: true
       builder_name:
-        description: 'Tên người build'
+        description: 'Builder Name'
         required: false
       builder_id:
-        description: 'ID người build'
+        description: 'Builder ID'
         required: false
       
 jobs:

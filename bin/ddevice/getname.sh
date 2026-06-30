@@ -13,5 +13,5 @@ if [ -z "$EXACT_KEY" ]; then
   EXACT_KEY="$KEY"
 fi
 
-VALUE=$(jq -r --arg key "$EXACT_KEY" '.[$key] // "Không tìm thấy key"' "$FILE_JSON")
+VALUE=$(jq -r --arg key "$EXACT_KEY" '.[$key] // "Key not found"' "$FILE_JSON")
 echo "$VALUE" > $work_dir/bin/ddevice/name_devices.txt

@@ -1,5 +1,5 @@
 @echo off&setlocal enabledelayedexpansion
-title Welcome to Nothings Classic ROM Installer
+title Welcome to DeadZone Classic ROM Installer
 cd %~dp0
 set fastboot=META-INF\fastboot
 set /p DeviceCodeRom=<META-INF\Data\DeviceCode
@@ -8,7 +8,7 @@ echo.[i] - Read this information before flashing
 echo.
 echo.1. Our ROM,like most other custom ROMS,requires an unlocked bootloader!If your device is NOT,please close this window.
 echo.2. You have to choose carefully else you will LOST ALL DATA!
-echo.3. THIS IS A FREE ROM!!!If you see someone sell or install this ROM for fees,please CONTACT ADMIN NOW.
+echo.3. THIS IS A FREE ROM!!!If you see someone sell or install this ROM for fees,please CONTACT MEZO NOW.
 echo.4. We will NOT take responsibility if you brick your phone or lose all data while installing this ROM.
 echo.5. Make sure you have downloaded the exact build for your device, else you might get bricked.
 
