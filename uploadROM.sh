@@ -1,7 +1,8 @@
 work_dir=$(pwd)
 source $work_dir/functions.sh
 RCLONE_CONFIG_1DRIVE="$work_dir/rclone.conf"
-ONEDRIVE_REMOTE="starxONEDRIVE"
+RCLONE_REMOTE_NAME="${RCLONE_REMOTE_NAME:-gdrive}"
+RCLONE_UPLOAD_DIR="${RCLONE_UPLOAD_DIR:-DeadZoneBuilds/GamingPlus}"
 os_type=$(cat $work_dir/bin/ddevice/os_type.txt)
 base_rom_code=$(cat $work_dir/bin/ddevice/base_rom_code.txt)
 androidVER=$(cat $work_dir/bin/ddevice/androidver.txt)
