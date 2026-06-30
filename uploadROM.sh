@@ -79,50 +79,102 @@ fi
 
 final_zip="DeadZone_GamingPlus_${version}_${codename}_${base_rom_code}_${region_stable}-${android_tag}.zip"
 output_file="out/${final_zip}"
-
-repack "Compressing super.img"
-
-if [ ! -f "$work_dir/build/baserom/images/super.img" ]; then
-    repack "Unable to find super.img before compression"
-    exit 1
-fi
-
-zstd --rm "$work_dir/build/baserom/images/super.img" -o "$work_dir/build/baserom/images/super.img.zst" >/dev/null 2>&1 || {
-    repack "Unable to compress super.img"
-    exit 1
-}
+chip="$(cat "$work_dir/bin/script2flash/META-INF/Data/Chip" 2>/dev/null || echo "")"
 
 repack "Generating flashing script"
 
 OUT_DIR="$work_dir/out/${os_type}_${device_code}_${base_rom_code}"
 OUT_IMAGES_DIR="$OUT_DIR/images"
-
 mkdir -p "$OUT_IMAGES_DIR"
 
-if [[ ${baserom_type} == 'payload' ]]; then
-    mv -f "$work_dir/build/baserom/images/super.img.zst" "$OUT_DIR/"
-    mv -f "$work_dir/build/baserom/images/"*.img "$OUT_IMAGES_DIR/" 2>/dev/null || true
-elif [[ ${baserom_type} == 'br' ]]; then
-    mv -f "$work_dir/build/baserom/firmware-update/"* "$OUT_IMAGES_DIR/" 2>/dev/null || true
-    mv -f "$work_dir/build/baserom/images/super.img.zst" "$OUT_DIR/"
-elif [[ ${baserom_type} == 'super' ]]; then
-    mv -f "$work_dir/build/baserom/images/super.img.zst" "$OUT_DIR/"
-    mv -f "$work_dir/build/baserom/images/"*.img "$OUT_IMAGES_DIR/" 2>/dev/null || true
+if [[ "$chip" == "Mediatek" ]]; then
+    repack "MediaTek detected. Building MTK fastboot final ZIP."
+
+    if [ ! -f "$work_dir/build/baserom/images/super.img" ]; then
+        repack "Unable to find super.img before MTK package generation"
+        exit 1
+    fi
+
+    if [ ! -d "$work_dir/bin/script2flash/mtk_template/bin" ] || [ ! -d "$work_dir/bin/script2flash/mtk_template/META-INF" ]; then
+        repack "MTK template is missing. Expected bin/script2flash/mtk_template/bin and META-INF"
+        exit 1
+    fi
+
+    cp -rf "$work_dir/bin/script2flash/mtk_template/bin" "$OUT_DIR/"
+    cp -rf "$work_dir/bin/script2flash/mtk_template/META-INF" "$OUT_DIR/"
+
+    mkdir -p "$OUT_DIR/META-INF/Data"
+    if [ -d "$work_dir/bin/script2flash/META-INF/Data" ]; then
+        cp -rf "$work_dir/bin/script2flash/META-INF/Data/"* "$OUT_DIR/META-INF/Data/" 2>/dev/null || true
+    fi
+    echo "$device_f" > "$OUT_DIR/META-INF/Data/DeviceCode"
+
+    mv -f "$work_dir/build/baserom/images/super.img" "$OUT_IMAGES_DIR/super.img"
+
+    SUPER_PARTS="system vendor product odm system_ext mi_ext system_dlkm vendor_dlkm odm_dlkm product_dlkm"
+    for img in "$work_dir/build/baserom/images/"*.img "$work_dir/build/baserom/images/"*.bin; do
+        [ -e "$img" ] || continue
+        name="$(basename "$img")"
+        part="${name%.*}"
+        skip="false"
+        for p in $SUPER_PARTS; do
+            if [ "$part" = "$p" ]; then
+                skip="true"
+                break
+            fi
+        done
+        if [ "$skip" = "true" ]; then
+            continue
+        fi
+        mv -f "$img" "$OUT_IMAGES_DIR/"
+    done
+
+    if [ -f "$work_dir/bin/script2flash/cust.img" ]; then
+        cp -f "$work_dir/bin/script2flash/cust.img" "$OUT_IMAGES_DIR/"
+    fi
+
+    python3 "$work_dir/bin/script2flash/generate_mtk_fastboot.py" "$work_dir" "$OUT_DIR" || {
+        repack "Unable to generate MTK fastboot scripts"
+        exit 1
+    }
 else
-    repack "Unknown baserom_type: ${baserom_type}"
-    exit 1
+    repack "Compressing super.img"
+
+    if [ ! -f "$work_dir/build/baserom/images/super.img" ]; then
+        repack "Unable to find super.img before compression"
+        exit 1
+    fi
+
+    zstd --rm "$work_dir/build/baserom/images/super.img" -o "$work_dir/build/baserom/images/super.img.zst" >/dev/null 2>&1 || {
+        repack "Unable to compress super.img"
+        exit 1
+    }
+
+    if [[ ${baserom_type} == 'payload' ]]; then
+        mv -f "$work_dir/build/baserom/images/super.img.zst" "$OUT_DIR/"
+        mv -f "$work_dir/build/baserom/images/"*.img "$OUT_IMAGES_DIR/" 2>/dev/null || true
+    elif [[ ${baserom_type} == 'br' ]]; then
+        mv -f "$work_dir/build/baserom/firmware-update/"* "$OUT_IMAGES_DIR/" 2>/dev/null || true
+        mv -f "$work_dir/build/baserom/images/super.img.zst" "$OUT_DIR/"
+    elif [[ ${baserom_type} == 'super' ]]; then
+        mv -f "$work_dir/build/baserom/images/super.img.zst" "$OUT_DIR/"
+        mv -f "$work_dir/build/baserom/images/"*.img "$OUT_IMAGES_DIR/" 2>/dev/null || true
+    else
+        repack "Unknown baserom_type: ${baserom_type}"
+        exit 1
+    fi
+
+    cp -rf "$work_dir/bin/script2flash/META-INF" "$OUT_DIR/"
+    cp -rf "$work_dir/bin/script2flash/"*.bat "$OUT_DIR/" 2>/dev/null || true
+    cp -rf "$work_dir/bin/script2flash/"*.sh "$OUT_DIR/" 2>/dev/null || true
+
+    if [ -f "$work_dir/bin/script2flash/cust.img" ]; then
+        cp -f "$work_dir/bin/script2flash/cust.img" "$OUT_IMAGES_DIR/"
+    fi
+
+    mkdir -p "$OUT_DIR/META-INF/Data"
+    echo "$device_f" > "$OUT_DIR/META-INF/Data/DeviceCode"
 fi
-
-cp -rf "$work_dir/bin/script2flash/META-INF" "$OUT_DIR/"
-cp -rf "$work_dir/bin/script2flash/"*.bat "$OUT_DIR/" 2>/dev/null || true
-cp -rf "$work_dir/bin/script2flash/"*.sh "$OUT_DIR/" 2>/dev/null || true
-
-if [ -f "$work_dir/bin/script2flash/cust.img" ]; then
-    cp -f "$work_dir/bin/script2flash/cust.img" "$OUT_IMAGES_DIR/"
-fi
-
-mkdir -p "$OUT_DIR/META-INF/Data"
-echo "$device_f" > "$OUT_DIR/META-INF/Data/DeviceCode"
 
 repack "Done"
 
@@ -139,7 +191,7 @@ echo "$final_zip" > "$work_dir/bin/ddevice/output_zip.txt"
 sha256_value="$(sha256sum "$output_file" | awk '{print $1}')"
 echo "$sha256_value" > "$work_dir/bin/ddevice/output_sha256.txt"
 
-python3 - "$output_file" > "$work_dir/bin/ddevice/output_size.txt" <<'PY'
+python3 - "$output_file" > "$work_dir/bin/ddevice/output_size.txt" <<'PYEOF'
 import os
 import sys
 
@@ -156,7 +208,7 @@ for unit in units:
             print(f"{value:.2f} {unit}")
         break
     value /= 1024.0
-PY
+PYEOF
 
 repack "Build completed"
 repack "Output: "

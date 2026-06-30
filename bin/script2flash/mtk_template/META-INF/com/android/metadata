@@ -1,0 +1,10 @@
+ota-property-files=payload_metadata.bin:4958:256213,payload.bin:4958:7053088829,payload_properties.txt:7053093845:156,apex_info.pb:2460:1285,care_map.pb:3792:1099,metadata:69:693,metadata.pb:830:1582                        
+ota-required-cache=0
+ota-streaming-property-files=payload.bin:4958:7053088829,payload_properties.txt:7053093845:156,apex_info.pb:2460:1285,care_map.pb:3792:1099,metadata:69:693,metadata.pb:830:1582                          
+ota-type=AB
+post-build=Redmi/zircon/zircon:16/BP2A.250605.031.A3/OS3.0.303.0.WNOCNXM:user/release-keys
+post-build-incremental=OS3.0.303.0.WNOCNXM
+post-sdk-level=36
+post-security-patch-level=2026-03-01
+post-timestamp=1776271535
+pre-device=zircon
